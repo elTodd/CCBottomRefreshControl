@@ -217,6 +217,10 @@ const CGFloat kMinRefershTime = 0.5;
 
     UITableView *tableView = self.brc_context.fakeTableView;
     
+    if(tableView == NULL) {
+        return;
+    }
+    
     [self.superview insertSubview:tableView aboveSubview:self];
 
     NSLayoutConstraint *left = [NSLayoutConstraint constraintWithItem:tableView attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0.0];
