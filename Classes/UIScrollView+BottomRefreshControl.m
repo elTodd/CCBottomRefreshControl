@@ -222,16 +222,18 @@ const CGFloat kMinRefershTime = 0.5;
     }
     
     [self.superview insertSubview:tableView aboveSubview:self];
-
+    
     NSLayoutConstraint *left = [NSLayoutConstraint constraintWithItem:tableView attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0.0];
     
     NSLayoutConstraint *right = [NSLayoutConstraint constraintWithItem:tableView attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeRight multiplier:1.0 constant:0.0];
     
     NSLayoutConstraint *bottom = [NSLayoutConstraint constraintWithItem:tableView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeBottom multiplier:1.0 constant:-self.contentInset.bottom];
     
+    NSLayoutConstraint *width = [NSLayoutConstraint constraintWithItem:tableView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute: NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:self.frame.size.width];
+    
     NSLayoutConstraint *height = [NSLayoutConstraint constraintWithItem:tableView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute: NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:kDefaultTriggerRefreshVerticalOffset];
-
-    [tableView addConstraint:height];
+    
+    [tableView addConstraints:@[width, height]];
     [self.superview addConstraints:@[left, right, bottom]];
 }
 
